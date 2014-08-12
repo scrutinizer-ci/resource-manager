@@ -7,7 +7,7 @@ are destroyed.
 ## Usage
 
 ```php
-use Scrutinizer\ResourceManager\DefaultResourceManager;
+use Scrutinizer\ResourceManager\ScopedResourceManager;
 
 
 class SomeClass {
