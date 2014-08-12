@@ -10,11 +10,12 @@ trait FilesystemResourceManager
     /**
      * A convenience method for creating a managed temporary file.
      *
+     * @param string|null $content the temporary file's content
      * @return string The path to the temporary file.
      */
-    public function createTemporaryFile()
+    public function createTemporaryFile($content = null)
     {
-        $resource = new TemporaryFile();
+        $resource = new TemporaryFile(null, $content);
         $this->manage($resource);
 
         return $resource->getFilename();

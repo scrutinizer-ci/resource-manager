@@ -42,5 +42,7 @@ class Scope
                 }
             }
         }
+
+        $this->resources = array();
     }
 }
