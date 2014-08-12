@@ -4,8 +4,7 @@
     "license": "MIT",
 
     "require": {
-        "psr/log": "~1.0",
-        "phpoption/phpoption": "~1.0"
+        "psr/log": "~1.0"
     },
 
     "require-dev": {

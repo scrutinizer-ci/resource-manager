@@ -5,8 +5,6 @@ namespace Scrutinizer\ResourceManager;
 use Psr\Log\NullLogger;
 use Psr\Log\LoggerInterface;
 use Scrutinizer\ResourceManager\Conversion\SymfonyProcessConversion;
-use Scrutinizer\ResourceManager\Resource\TemporaryDirectory;
-use Scrutinizer\ResourceManager\Resource\TemporaryFile;
 
 class ScopedResourceManager implements ResourceManager
 {
@@ -43,21 +41,22 @@ class ScopedResourceManager implements ResourceManager
         }
 
         foreach ($this->conversions as $conversion) {
-            $resourceMaybe = $conversion->convertMaybe($value);
-            if ($resourceMaybe->isDefined()) {
-                $resource = $resourceMaybe->get();
-                if ( ! $resource instanceof Resource) {
-                    throw new \RuntimeException(sprintf(
-                        'The conversion "%s" did not return an instance of Resource, but %s instead.',
-                        get_class($conversion),
-                        is_object($resource) ? get_class($resource) : gettype($resource)
-                    ));
-                }
-
-                $this->currentScope->register($resource);
-
-                return;
+            $resource = $conversion->convertMaybe($value);
+            if ($resource === null) {
+                continue;
             }
+
+            if ( ! $resource instanceof Resource) {
+                throw new \RuntimeException(sprintf(
+                    'The conversion "%s" did not return an instance of Resource, but %s instead.',
+                    get_class($conversion),
+                    is_object($resource) ? get_class($resource) : gettype($resource)
+                ));
+            }
+
+            $this->currentScope->register($resource);
+
+            return;
         }
 
         throw new \RuntimeException('There was no implicit conversion for the given value.');

@@ -3,11 +3,26 @@
 namespace Scrutinizer\ResourceManager;
 
 use Scrutinizer\ResourceManager\Resource\TemporaryFile;
+use Symfony\Component\Process\Process;
 
 class ScopedResourceManagerTest extends \PHPUnit_Framework_TestCase
 {
     /** @var ScopedResourceManager */
     private $rm;
+
+    public function testImplicitlyConvertsProcess()
+    {
+        $proc = new Process('sleep 60');
+        $proc->start();
+
+        $this->rm->managed(function() use ($proc) {
+            $this->assertTrue($proc->isRunning());
+            $this->rm->manage($proc);
+            $this->assertTrue($proc->isRunning());
+        });
+
+        $this->assertFalse($proc->isRunning());
+    }
 
     public function testManaged()
     {

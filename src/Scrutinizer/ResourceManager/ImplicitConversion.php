@@ -6,7 +6,7 @@ interface ImplicitConversion
 {
     /**
      * @param mixed $value
-     * @return Option for an instance of Resource (Option<Resource>)
+     * @return Resource|null
      */
     public function convertMaybe($value);
 }
