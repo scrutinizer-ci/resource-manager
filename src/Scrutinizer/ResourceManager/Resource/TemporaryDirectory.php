@@ -43,12 +43,12 @@ class TemporaryDirectory implements Resource
 
             if (is_dir($path)) {
                 $this->destroyRecursive($path);
-                rmdir($path);
             } else {
                 unlink($path);
             }
         }
 
         closedir($h);
+        rmdir($dir);
     }
 }
