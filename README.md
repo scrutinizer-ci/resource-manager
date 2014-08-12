@@ -7,7 +7,6 @@ are destroyed.
 ## Usage
 
 ```php
-
 use Scrutinizer\ResourceManager\DefaultResourceManager;
 
 
@@ -35,7 +34,6 @@ class SomeClass {
 
 $someClass = new SomeClass(new ScopedResourceManager());
 $someClass->run();
-
 ```
 
 ## Resource Manager Implementations
@@ -72,7 +70,6 @@ class SomeTest extends \PHPUnit_Framework_TestCase
         $this->rm->manage($proc);
     }
 }
-
 ```
 
 
@@ -81,7 +78,6 @@ class SomeTest extends \PHPUnit_Framework_TestCase
 By default, this library supports temporary files, temporary directories, and Symfony background processes (using its Process component). You can also add create your own resources by implementing ``Scrutinizer\ResourceManager\Resource``:
 
 ```php
-
 use Scrutinizer\ResourceManager\Resource;
 use Scrutinizer\ResourceManager\ScopedResourceManager;
 
@@ -102,5 +98,4 @@ class PhpFileResource implements Resource
 
 $rm = new ScopedResourceManager();
 $rm->manage(new PhpFileResource($someHandle));
-
 ```
