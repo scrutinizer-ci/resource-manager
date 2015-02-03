@@ -12,7 +12,7 @@ interface ResourceManager
 
     /**
      * @param callable $block
-     * @return void
+     * @return mixed
      */
     public function managed(callable $block);
 }

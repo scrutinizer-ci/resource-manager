@@ -18,6 +18,6 @@ abstract class DelegatingResourceManager implements ResourceManager
 
     public function managed(callable $block)
     {
-        return $this->managed($block);
+        return $this->delegate->managed($block);
     }
 }
