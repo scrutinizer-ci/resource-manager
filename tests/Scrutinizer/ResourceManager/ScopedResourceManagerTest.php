@@ -2,10 +2,11 @@
 
 namespace Scrutinizer\ResourceManager;
 
+use PHPUnit\Framework\TestCase;
 use Scrutinizer\ResourceManager\Resource\TemporaryFile;
 use Symfony\Component\Process\Process;
 
-class ScopedResourceManagerTest extends \PHPUnit_Framework_TestCase
+class ScopedResourceManagerTest extends TestCase
 {
     /** @var ScopedResourceManager */
     private $rm;
@@ -38,7 +39,7 @@ class ScopedResourceManagerTest extends \PHPUnit_Framework_TestCase
         });
 
         $this->assertEquals('foo', $rs);
-        $this->assertFileNotExists($tmpFile->getFilename());
+        $this->assertFileDoesNotExist($tmpFile->getFilename());
     }
 
     public function testResourceIsCleanedUpWhenExceptionIsThrown()
@@ -55,11 +56,11 @@ class ScopedResourceManagerTest extends \PHPUnit_Framework_TestCase
             $this->fail('Exception expected.');
         } catch (\RuntimeException $ex) {
             $this->assertEquals('Foo', $ex->getMessage());
-            $this->assertFileNotExists($tmpFile->getFilename());
+            $this->assertFileDoesNotExist($tmpFile->getFilename());
         }
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->rm = new ScopedResourceManager();
     }

@@ -4,11 +4,12 @@
     "license": "MIT",
 
     "require": {
-        "psr/log": "~1.0"
+        "psr/log": "^3.0.0"
     },
 
     "require-dev": {
-        "symfony/process": "~2.2"
+        "symfony/process": "~2.2",
+        "phpunit/phpunit": "^9.5"
     },
 
     "autoload": {

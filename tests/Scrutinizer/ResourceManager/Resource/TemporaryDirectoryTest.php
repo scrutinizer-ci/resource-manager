@@ -2,7 +2,9 @@
 
 namespace Scrutinizer\ResourceManager\Resource;
 
-class TemporaryDirectoryTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class TemporaryDirectoryTest extends TestCase
 {
     public function testDestroy()
     {

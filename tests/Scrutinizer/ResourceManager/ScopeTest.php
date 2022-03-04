@@ -2,7 +2,9 @@
 
 namespace Scrutinizer\ResourceManager;
 
-class ScopeTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ScopeTest extends TestCase
 {
     /** @var FilesystemResourceManager */
     private $rm;
@@ -40,7 +42,7 @@ CODE
         $this->assertEquals("Called", implode('', $output));
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->rm = new FilesystemResourceManager(new ScopedResourceManager());
     }
