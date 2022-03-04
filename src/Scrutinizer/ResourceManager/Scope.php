@@ -6,6 +6,7 @@ use Psr\Log\LoggerInterface;
 
 class Scope
 {
+    /** @var LoggerInterface */
     private $logger;
 
     /** @var Resource[] */
